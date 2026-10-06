@@ -11,8 +11,8 @@ class LivrariaRepository {
   _obterDadosPadrao() {
     return {
       usuarios: [
-        { id: 1, nome: "Admin", email: "admin@livraria.com", senha_hash: "$2b$10$9v3m0C1O6mK9BqV3j0Xg9.1fG/3zR1i5e.7F6o4D1u1G2H3J4K5L6", role: "ADMIN" },
-        { id: 2, nome: "Leitor", email: "leitor@gmail.com", senha_hash: "$2b$10$9v3m0C1O6mK9BqV3j0Xg9.1fG/3zR1i5e.7F6o4D1u1G2H3J4K5L6", role: "USER" }
+        { id: 1, nome: "Admin", email: "admin@livraria.com", senha_hash: "$2b$10$qb3MB49kV/mI6SVZEB1fserr1Xtl.rdLDjQdGDo6Te.XAMiNhALpu", role: "ADMIN" },
+        { id: 2, nome: "Leitor", email: "leitor@gmail.com", senha_hash: "$2b$10$FUrvunzY7eA5Z07KPkJ2Ke1AUICGuPfyDUPsi1OMAIySiykuCtdhq", role: "USER" }
       ],
       autores: [
         { id: 1, nome: "Machado de Assis", nacionalidade: "Brasileiro" }

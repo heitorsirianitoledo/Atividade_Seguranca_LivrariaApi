@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+
+const SEGREDO_JWT = process.env.JWT_SECRET || 'segredo-da-livraria';
+
 function autenticarToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1]; // Extrai após "Bearer "
@@ -6,10 +10,12 @@ function autenticarToken(req, res, next) {
     return res.status(401).json({ erro: "Token de autenticação não fornecido." });
   }
 
-  // TODO: Aluno implementa a validação com jwt.verify()
-  // Mock para simulação inicial:
-  req.usuario = { id: 1, nome: "Admin", role: "ADMIN" };
-  next();
+  try {
+    req.usuario = jwt.verify(token, SEGREDO_JWT);
+    next();
+  } catch (error) {
+    return res.status(401).json({ erro: "Token inválido ou expirado." });
+  }
 }
 
 function exigirRole(roleEsperada) {
