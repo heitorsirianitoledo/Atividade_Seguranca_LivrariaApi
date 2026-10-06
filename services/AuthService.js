@@ -15,10 +15,9 @@ class AuthService {
       throw { status: 409, message: "E-mail já cadastrado no sistema." };
     }
 
-    // Hash da senha com BCrypt (salt automático + work factor 10)
+    // Hash da senha com BCrypt (implemetado no laboratório)
     const senha_hash = await bcrypt.hash(senha, 10);
 
-    // O perfil não vem do cliente: todo cadastro público é USER
     const novoUsuario = repository.salvarUsuario({
       nome,
       email,
@@ -40,13 +39,11 @@ class AuthService {
       throw { status: 401, message: "Credenciais inválidas." };
     }
 
-    // Conferência da senha contra o hash BCrypt
     const senhaConfere = await bcrypt.compare(senha, usuario.senha_hash);
     if (!senhaConfere) {
       throw { status: 401, message: "Credenciais inválidas." };
     }
 
-    // Emissão do JWT
     const token = jwt.sign(
       { id: usuario.id, nome: usuario.nome, role: usuario.role },
       SEGREDO_JWT,
